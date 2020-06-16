@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Post;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class PostsController extends Controller
+class CategoriesController extends Controller
 {
     public function __construct()
     {
@@ -19,19 +18,13 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param int $category
-     *
      * @return Response
      */
-    public function index(string $slug)
+    public function index()
     {
-        $category = $this->getCategory($slug);
-        $posts = $category->posts;
+        $categories = Category::all();
 
-        return view('posts.index', [
-            'category' => $category,
-            'posts' => $posts
-        ]);
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -39,13 +32,9 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function create(string $slug)
+    public function create()
     {
-        $category = $this->getCategory($slug);
-
-        return view('posts.create', [
-            'category' => $category
-        ]);
+        // TODO:
     }
 
     /**
@@ -55,15 +44,9 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request, string $slug)
+    public function store(Request $request)
     {
-        $category = $this->getCategory($slug);
-        $post = new Post($request->all());
-        $post->category()->associate($category);
-        $post->user()->associate($request->user());
-        $post->save();
-
-        return redirect()->route('posts', ['slug' => $category->title]);
+        // TODO:
     }
 
     /**
@@ -74,7 +57,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        // TODO:
     }
 
     /**
@@ -111,18 +94,6 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-
-        return redirect()->route('posts.index');
-    }
-
-    private function getCategory($slug)
-    {
-        $category = Category::where('title', $slug)->first();
-        if (!$category) {
-            abort(404);
-        }
-
-        return $category;
+        // TODO:
     }
 }

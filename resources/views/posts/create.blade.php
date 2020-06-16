@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Create new post</h1>
-                <form class="form" method="POST" action="{{route('posts.store')}}">
+                <form class="form" method="POST" action="{{route('posts.store', ['slug' => $category->title])}}">
                     @csrf
                     <div class="form-group">
                         <label for="title">Post Title</label>
