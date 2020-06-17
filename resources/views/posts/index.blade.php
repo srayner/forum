@@ -11,13 +11,32 @@
                             <h2>{{$post->title}}</h2>
                             <small>{{$post->created_at->format('jS M Y')}} - {{$post->user->name}}</small>
                             <p>{{$post->body}}</p>
-                            @if (\Illuminate\Support\Facades\Auth::id() == $post->user->id)
-                            <form method="POST" action="{{route('posts.destroy', ['post' => $post])}}">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <input type="submit" class="btn btn-link" value="Delete">
-                            </form>
-                            @endif
+                            <div class="mb-3">
+                                <span class="action-container">
+                                    <a href="{{route('comments.create', ['postId' => $post->id])}}">comment</a>
+                                </span>
+                                @if (\Illuminate\Support\Facades\Auth::id() == $post->user->id)
+                                <form class="float-left" method="POST" action="{{route('posts.destroy', ['post' => $post])}}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <input type="submit" class="btn btn-link" value="delete">
+                                </form>
+                                @endif
+                            </div>
+
+                            @foreach($post->comments as $comment)
+                                <div class="mb-5">
+                                    <div>
+                                        <p class="comment"><b>{{$comment->user->name}}</b> {{$comment->message}}</p>
+                                    </div>
+                                    @if (\Illuminate\Support\Facades\Auth::check())
+                                        <form class="float-left" method="POST" action="{{route('votes.store', ['comment' => $comment])}}">
+                                            {{ csrf_field() }}
+                                            <input type="submit" class="btn btn-link" value="Like">
+                                        </form>
+                                    @endif
+                                </div>
+                            @endforeach
 
                         </div>
                     </div>

@@ -6,6 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ *
+ * @author Steve Rayner stephen.rayner@marmalade.co.uk
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;

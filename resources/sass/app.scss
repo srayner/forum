@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.action-container {
+    position: relative;
+    top: 6.5px;
+    margin-bottom: 15px;
+}
+
+.comment {
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0 10px;
+    display: inline-block;
+}

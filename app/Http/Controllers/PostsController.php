@@ -9,8 +9,17 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * Class PostsController
+ *
+ * @author Steve Rayner stephen.rayner@marmalade.co.uk
+ * @package App\Http\Controllers
+ */
 class PostsController extends Controller
 {
+    /**
+     * PostsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index']]);
@@ -116,6 +125,11 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
+    /**
+     * @param $slug
+     *
+     * @return mixed
+     */
     private function getCategory($slug)
     {
         $category = Category::where('title', $slug)->first();

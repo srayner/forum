@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 
+/**
+ * Class HomeController
+ *
+ * @author Steve Rayner stephen.rayner@marmalade.co.uk
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
