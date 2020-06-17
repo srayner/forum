@@ -120,9 +120,10 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        $category = $post->category;
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts', ['slug' => $category->title]);
     }
 
     /**
